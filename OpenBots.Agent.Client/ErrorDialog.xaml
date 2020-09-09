@@ -1,0 +1,51 @@
+﻿<Window x:Class="OpenBots.Agent.Client.ErrorDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OpenBots.Agent.Client"
+        mc:Ignorable="d"
+        Title="OpenBots Agent Error" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center">
+            <Label Name="lbl_GeneralErrorMsg" Content="" Margin="0,0,5,0" FontSize="14"></Label>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Grid.Row="1" Margin="0,10,5,5">
+            <Expander Name="hcontCtrl">
+                <Expander.Header>
+                    <Label Content="Error Details" FontWeight="DemiBold" Foreground="#eb2113"/>
+                </Expander.Header>
+                <StackPanel>
+                    <Grid Name="grd_ErrorDetails">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="95"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Status Code:" Name="lbl_StatusCode" VerticalContentAlignment="Center" HorizontalAlignment="Left" FontSize="11"/>
+                        <Label Content="" Name="lbl_StatusCodeValue" Grid.Column="1" VerticalContentAlignment="Center" FontSize="11"/>
+                        <Label Content="Error Message:" Grid.Row="1" VerticalContentAlignment="Center" HorizontalAlignment="Left" FontSize="11"/>
+                        <TextBlock Text="" Name="txtBlock_ErrorMessage" Grid.Row="1" Grid.Column="1" FontSize="11" VerticalAlignment="Center"/>
+                    </Grid>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Grid.Row="2" HorizontalAlignment="Right" Margin="0,10,5,5">
+            <Button Name="OKBtn" Content="OK" Height="25" Width="80" VerticalContentAlignment="Center" Background="White" Click="OnClick_OKBtn">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="4"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,10 @@
+{
+  "TracingLevel": "Information",
+  "SinkType": "File",
+  "LoggingValue1": "C:\\ProgramData\\OpenBots\\Logs",
+  "LoggingValue2": "",
+  "LoggingValue3": "",
+  "LoggingValue4": "",
+  "OpenBotsServerUrl": "",
+  "AgentId": ""
+}

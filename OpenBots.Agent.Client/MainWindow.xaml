@@ -1,0 +1,135 @@
+﻿<Window x:Class="OpenBots.Agent.Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OpenBots.Agent.Client"
+        mc:Ignorable="d"
+        Title="OpenBots Agent" Name="wndMain" Height="655" Width="488" Loaded="OnLoad" ResizeMode="NoResize" Unloaded="OnUnload" Initialized="OnInitialized" Closing="OnClosing" StateChanged="OnStateChanged" Closed="OnClosed" WindowStartupLocation="CenterScreen">
+    <Grid Name="mainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="295"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="Server Configuration" FontSize="14" Margin="10" BorderThickness="2,2,2,2">
+            <StackPanel Name="machineNameItems" Margin="0,10,0,0">
+                <Label Content="Machine Name" FontWeight="Bold" Name="lbl_MachineName"></Label>
+                <TextBox Name="txt_MachineName" IsEnabled="False" FontSize="16" Margin="5,0,10,0" Height="29" Background="#FFDACCCC" VerticalContentAlignment="Center"/>
+                <Label Content="Agent Id" FontWeight="Bold" Name="lbl_AgentId"></Label>
+                <TextBox Name="txt_AgentId" IsEnabled="False" Height="29" FontSize="16" Margin="5,0,10,0" Background="#FFDACCCC" VerticalContentAlignment="Center"/>
+                <Label Content="Server URL" FontWeight="Bold" Name="lbl_ServerURL"></Label>
+                <TextBox Name="txt_ServerURL" Height="29" FontSize="16" Margin="5,0,10,0" VerticalContentAlignment="Center" TextChanged="OnTextChange_ServerURL"/>
+                <Grid Name="connect_Controls" Margin="0,18,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Status:" FontSize="16" FontWeight="DemiBold" VerticalContentAlignment="Center"/>
+                    <Label Content="Offline" Name="lbl_StatusValue" Foreground="#FFBBB5B5" Grid.Column="1" VerticalContentAlignment="Center"/>
+                    <Button Content="Connect" Name="btn_Connect" Margin="54,0,10,0" Grid.Column="2" FontSize="16" VerticalContentAlignment="Center" Background="White" Click="OnClick_ConnectBtn"/>
+                </Grid>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Logging" FontSize="14" BorderThickness="2,2,2,2" Margin="10,0,10,10" Grid.Row="1">
+            <Grid Margin="0,10,0,0" x:Name="loggingGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Name="pnl_LogLevel">
+                    <Grid Name="loggingLevelGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Minimum Log Level" FontWeight="DemiBold" Name="lbl_Level"/>
+                        <ComboBox Name="cmb_LogLevel" Grid.Column="1" Margin="0,0,10,0" VerticalContentAlignment="Center" DropDownClosed="OnDropDownClosed_LogLevel">
+                            <!--<ComboBoxItem Content="Verbose"/>
+                            <ComboBoxItem Content="Trace"/>
+                            <ComboBoxItem Content="Information"/>
+                            <ComboBoxItem Content="Warning"/>
+                            <ComboBoxItem Content="Error"/>
+                            <ComboBoxItem Content="Critical"/>-->
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Name="pnl_SinkType" Grid.Row="1">
+                    <Grid Name="grd_SinkType" Margin="0,10,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Name="pnl_SinkType_Controls">
+                            <Grid Name="grd_SinkType_Controls">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Sink Type" FontWeight="DemiBold" Name="lbl_SinkType"/>
+                                <ComboBox Name="cmb_SinkType" Grid.Column="1" Margin="0,0,10,0" VerticalContentAlignment="Center" DropDownClosed="OnDropDownClosed_SinkType">
+                                    <!--<ComboBoxItem Content="File"/>
+                                    <ComboBoxItem Content="Http"/>
+                                    <ComboBoxItem Content="SignalR"/>-->
+                                </ComboBox>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Name="pnl_SinkType_Logging1" Grid.Row="1" Margin="0,10,0,0" Height="29">
+                            <Grid Name="grd_SinkType_Logging1" Margin="0,0,10,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Log1" FontWeight="DemiBold" Name="lbl_SinkType_Logging1"/>
+                                <TextBox Name="txt_SinkType_Logging1" FontSize="16" Grid.Column="1" VerticalContentAlignment="Center" TextChanged="OnTextChange_Logging1"/>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Name="pnl_SinkType_Logging2" Grid.Row="2" Margin="0,10,0,0" Height="29">
+                            <Grid Name="grd_SinkType_Logging2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Log2" FontWeight="DemiBold" Name="lbl_SinkType_Logging2"/>
+                                <TextBox Name="txt_SinkType_Logging2" FontSize="16" Grid.Column="1" Margin="0,0,10,0" VerticalContentAlignment="Center" TextChanged="OnTextChange_Logging2"/>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Name="pnl_SinkType_Logging3" Grid.Row="3" Margin="0,10,0,0" Height="29">
+                            <Grid Name="grd_SinkType_Logging3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Log3" FontWeight="DemiBold" Name="lbl_SinkType_Logging3"/>
+                                <TextBox Name="txt_SinkType_Logging3" FontSize="16" Grid.Column="1" Margin="0,0,10,0" VerticalContentAlignment="Center" TextChanged="OnTextChange_Logging3"/>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Name="pnl_SinkType_Logging4" Grid.Row="4" Margin="0,10,0,0" Height="29">
+                            <Grid Name="grd_SinkType_Logging4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Log4" FontWeight="DemiBold" Name="lbl_SinkType_Logging4"/>
+                                <TextBox Name="txt_SinkType_Logging4" FontSize="16" Grid.Column="1" Margin="0,0,10,0" VerticalContentAlignment="Center" TextChanged="OnTextChange_Logging4"/>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Name="pnl_SinkType_Save" Grid.Row="5" Margin="0,13,0,0" Height="29">
+                            <Grid Name="grd_SinkType_Save">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Content="Save" Name="btn_Save" Margin="0,0,10,0"  Grid.Column="1" HorizontalAlignment="Right" FontSize="16" VerticalContentAlignment="Center" Background="White" Height="29" Width="100" Click="OnClick_SaveBtn"/>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
